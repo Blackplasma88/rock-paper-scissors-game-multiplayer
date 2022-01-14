@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="style/main.css">
+</head>
+
+<body>
+    <label id='account'>---</label>
+    <label id='account-id' visibility='hidden'></label>
+    <div class="container">
+        <div class="chat-log">
+            <div class="header">
+                <h1>Chat</h1>
+            </div>
+            <div class="chat-show">
+                <ul class="chat-events"></ul>
+            </div>
+            <div class="send-chat">
+                <form action="" id="form-send-chat">
+                    <input type="text" id="input-chat" autocomplete="off" placeholder="Write your message">
+                    <button id="btn-send-chat">Send</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="game-log">
+            <div class="header">
+                <h1>Game</h1>
+            </div>
+            <div class="game-events-table">
+                <ul class="game-events"></ul>
+            </div>
+            <div class="game-buttom">
+                <button class="btn-play" id="btn-rock">Rock</button>
+                <button class="btn-play" id="btn-paper">Paper</button>
+                <button class="btn-play" id="btn-scissors">Scissors</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="src/client.js"></script>
+    <script>
+        const userID = Date.now()
+
+        let name = prompt('What is your name?')
+
+        const acName = document.getElementById('account')
+        const acID = document.getElementById('account-id')
+
+        acName.innerHTML = 'Your name : ' + name
+        acID.innerHTML = 'Your id : ' + userID
+        socket.emit('userConnected', name)
+    </script>
+</body>
+
+</html>
